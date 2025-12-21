@@ -1,12 +1,11 @@
+import Hero from "../Components/Hero"
 
 
 const Home = () => {
   return (
-    <div>
-        <h1 className="text-3xl font-bold line-through">
-    Hello world!
-  </h1>
-    </div>
+    <section className="bg-[#F2F0F1]">
+      <Hero />
+    </section>
   )
 }
 
