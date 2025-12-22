@@ -11,7 +11,7 @@ const Hero = () => {
         <div className="flex-1">
             <h1 className="text-5xl md:text-7xl font-extrabold uppercase tracking-tight leading-10 md:leading-17">FIND CLOTHES <br /> that matches <br /> your style</h1>
             <p className="text-gray-800 font-extralight my-7.5 text-sm md:text-[16px] max-w-92.5 md:max-w-140">Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-            <button className="w-90 md:w-65 py-4 bg-black text-white rounded-4xl font-medium cursor-pointer mb-8 md:mb-15">Shop Now</button>
+            <button className="w-90 md:w-65 py-4 bg-black text-white rounded-4xl font-medium cursor-pointer mb-8 md:mb-15 transition-all duration-300 hover:-translate-y-1">Shop Now</button>
 
             <div className="flex items-center flex-wrap justify-center md:justify-start">
                 <HeroText title={"200+"} description="International Brands"/>

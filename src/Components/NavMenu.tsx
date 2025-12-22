@@ -17,7 +17,7 @@ const NavMenu = ({ link, setOpenDropDownId, openDropDownId }: NavMenuProps) => {
                         onMouseLeave={() => setOpenDropDownId(null)}>
                             <NavLink
                             to={link.path}
-                            className={({ isActive }) => `transition-all duration-500 hover:text-red-500 ${isActive ? "text-red-500 border-b-2 border-red-500" : "text-gray-600"}`}>
+                            className={({ isActive }) => `transition-all duration-300 inline-block hover:text-fuchsia-900 ${isActive ? "text-fuchsia-900 scale-105" : "text-gray-600"}`}>
                                 <div className="flex items-center">
                                 {link.title}
                                 {link.hasDropDown && (
