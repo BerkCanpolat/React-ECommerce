@@ -8,6 +8,10 @@ import smproductTwo from '../assets/smproducttwo.png';
 import vectorOne from '../assets/vector.png';
 import vectorTwo from '../assets/vector2.png';
 
+import loading from '../assets/loading.json';
+
+import error from '../assets/error.svg';
+
 export const IMAGES = {
     LOGO: logo,
     MAIN_BG: mainbg,
@@ -15,4 +19,6 @@ export const IMAGES = {
     SM_PRODUCT_TWO: smproductTwo,
     VECTOR_ONE: vectorOne,
     VECTOR_TWO: vectorTwo,
+    LOADING: loading,
+    ERROR: error
 } as const;

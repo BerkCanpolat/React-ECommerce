@@ -1,6 +1,6 @@
 import { ProductApi } from "../Endpoints/Products.api";
 import type { IProductsService } from "../interfaces/IProductsService";
-import type { Products } from "../types/Products.types";
+import type { ProductsResponse } from "../types/Products.types";
 import { BaseService } from "./BaseService";
 
 export class ProductService extends BaseService implements IProductsService {
@@ -9,10 +9,9 @@ export class ProductService extends BaseService implements IProductsService {
         super("products");
     }
 
-    async getIProducts(): Promise<Products[]> {
+    async getIProducts(page: number = 1): Promise<ProductsResponse> {
         try {
-            const response = await ProductApi.getProducts();
-            return response.data;
+            return await ProductApi.getProducts(page);
         } catch (error) {
             this.handleError(error);
         }

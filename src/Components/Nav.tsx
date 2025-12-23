@@ -6,6 +6,9 @@ import { IoMdClose } from "react-icons/io"
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
+import { motion } from "framer-motion";
+import { headerVariants } from "../Constants/Animation";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
     
@@ -22,7 +25,10 @@ const Nav = () => {
     }, [openMenu])
 
   return (
-    <header>
+    <motion.header
+    variants={headerVariants}
+    initial="initial"
+    animate="animate">
 
         <div className={`bg-black transition-all duration-500 ${infoClose ? "py-2.5 md:py-1.5 opacity-100 max-h-20" : " py-0 opacity-0 max-h-0"}`}>
         <div className="flex items-center px-5 md:px-0 md:container md:m-auto">
@@ -36,7 +42,9 @@ const Nav = () => {
         <div className="flex items-center justify-between px-5 md:px-0 md:container md:m-auto">
             <div className="flex items-center gap-8.5">
                 <CgMenuLeft className="md:hidden" size={24} onClick={() => setOpenMenu((prev) => !prev)}/>
+                    <Link to={"/"}>
         <img src={IMAGES.LOGO} alt="LOGO" className="w-22 md:w-38"/>
+                    </Link>
 
             </div>
         <nav className="relative py-8.5 md:py-0">
@@ -72,7 +80,7 @@ const Nav = () => {
         </div>
 
         </div>
-    </header>
+    </motion.header>
   )
 }
 
