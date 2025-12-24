@@ -12,6 +12,10 @@ import loading from '../assets/loading.json';
 
 import error from '../assets/error.svg';
 
+import children from '../assets/children.jpg';
+import casual from '../assets/casual.png';
+import women from '../assets/women.png';
+
 export const IMAGES = {
     LOGO: logo,
     MAIN_BG: mainbg,
@@ -20,5 +24,15 @@ export const IMAGES = {
     VECTOR_ONE: vectorOne,
     VECTOR_TWO: vectorTwo,
     LOADING: loading,
-    ERROR: error
+    ERROR: error,
+    CHILDREN: children,
+    CASUAL: casual,
+    WOMEN: women
 } as const;
+
+export const CATEGORY_IMAGES: Record<string, string> = {
+    women: IMAGES.WOMEN,
+    men: IMAGES.CASUAL,
+    kids: IMAGES.CHILDREN,
+    logo: IMAGES.LOGO
+};

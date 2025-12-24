@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import type { Products } from "../Api/types/Products.types";
 import { useProducts } from "../Hooks/useProducts";
-import { FaStar, FaStarHalf } from "react-icons/fa";
 import { IMAGES } from "../Constants/images";
 import Lottie from "lottie-react";
+import ArrivalMap from "./ArrivalMap";
 
 
 const NewArrivals = () => {
+    const PER_PAGE = 4; 
   const [perProducts, setPerProducts] = useState<Products[]>([]);
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, error, isFetching, refetch } = useProducts(page);
+  const { data, isLoading, error, isFetching, refetch } = useProducts(page, PER_PAGE);
 
   useEffect(() => {
     if (data?.data) {
@@ -49,33 +50,12 @@ const NewArrivals = () => {
   return (
     <section className="px-5 md:px-0 md:container md:m-auto">
 
-        <h1 className="text-6xl uppercase font-extrabold font-serif text-center mt-25 mb-15">new arrıvals</h1>
+        <h1 className="text-3xl md:text-6xl uppercase font-extrabold font-serif text-center mt-15 mb-10 md:mt-25 md:mb-15">new arrıvals</h1>
 
-      <div className="grid grid-cols-4 gap-6 place-items-center">
-        {perProducts.map((products, i) => {
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 place-items-center">
+        {perProducts.map((products) => {
           return (
-            <div key={i} className="">
-              <div className="bg-[#F0EEED] w-73 h-80 rounded-3xl flex items-center justify-center overflow-hidden group cursor-pointer">
-                <img
-                  src={products.image}
-                  alt={products.title}
-                  className="w-50 h-65 object-cover rounded-lg transition-all duration-300 group-hover:scale-110 will-change-transform"
-                />
-              </div>
-              <div>
-                <p className="font-semibold mt-2 font-kalvin">{products.title}</p>
-                <div className="flex items-center my-1.5">
-                    <div className="flex items-center gap-0.5">
-                    <FaStar className="text-amber-400" />
-                    <FaStar className="text-amber-400"/>
-                    <FaStar className="text-amber-400"/>
-                    <FaStarHalf className="text-amber-400"/>
-                    </div>
-                    <p className="font-extralight text-sm font-kalvin">{products.rating}</p>
-                </div>
-                <h1 className="font-kalvin font-medium text-xl">${products.price}</h1>
-              </div>
-            </div>
+            <ArrivalMap products={products} key={products._id}/>
           );
         })}
       </div>

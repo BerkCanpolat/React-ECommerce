@@ -1,5 +1,6 @@
-import type { ProductsResponse } from "../types/Products.types";
+import type { ProductCategory, ProductsResponse } from "../types/Products.types";
 
 export interface IProductsService {
-    getIProducts(page: number): Promise<ProductsResponse>
+    getIProducts(page: number, perPage: number): Promise<ProductsResponse>
+    getICategories(): Promise<ProductCategory[]>;
 }

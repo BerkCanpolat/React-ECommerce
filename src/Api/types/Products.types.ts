@@ -1,3 +1,4 @@
+export type ProductCategory = string;
 export type ProductSize = "S" | "M" | "L";
 
 export interface ProductsResponse {

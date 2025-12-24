@@ -1,3 +1,4 @@
 export const PRODUCT_KEYS = {
-    allProduct: (page: number) => ["products", "all", page] as const
+    allProduct: (page: number, perPage: number) => ["products", "all", page, perPage] as const,
+    categories: () => ["products", "categories"] as const
 }

@@ -5,5 +5,6 @@ import type { ProductsResponse } from "../types/Products.types";
 const client = new HttpClient(API_CONFIG.ECOMMERCE_BASE);
 
 export const ProductApi = {
-    getProducts: (page: number = 1) => client.get<ProductsResponse>("products", {page, perPage: 4})
+  getProducts: (page: number = 1, perPage: number = 4) =>
+    client.get<ProductsResponse>("products", { page, perPage }),
 };
