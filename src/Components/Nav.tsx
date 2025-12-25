@@ -28,7 +28,8 @@ const Nav = () => {
     <motion.header
     variants={headerVariants}
     initial="initial"
-    animate="animate">
+    animate="animate"
+    className="sticky top-0 w-full z-100">
 
         <div className={`bg-black transition-all duration-500 ${infoClose ? "py-2.5 md:py-1.5 opacity-100 max-h-20" : " py-0 opacity-0 max-h-0"}`}>
         <div className="flex items-center px-5 md:px-0 md:container md:m-auto">

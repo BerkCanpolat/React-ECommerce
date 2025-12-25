@@ -25,3 +25,12 @@ export interface Products {
     image: string,
     rating: number
 };
+
+export interface ReviewsResponse {
+    data: Reviews[];
+}
+
+export interface Reviews {
+    _id: number,
+    comment: string
+}

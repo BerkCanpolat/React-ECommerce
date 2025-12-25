@@ -4,6 +4,7 @@ import { useProducts } from "../Hooks/useProducts";
 import { IMAGES } from "../Constants/images";
 import Lottie from "lottie-react";
 import ArrivalMap from "./ArrivalMap";
+import NewArrivalsSkeleton from "./Skeleton/NewArrivalSkeleton";
 
 
 const NewArrivals = () => {
@@ -25,11 +26,7 @@ const NewArrivals = () => {
   }, [data]);
 
   if (isLoading && page === 1) {
-    return (
-        <div className="flex justify-center items-center">
-            <Lottie animationData={IMAGES.LOADING} className="w-50 h-50"/>
-        </div>
-    )
+    return <NewArrivalsSkeleton />
   }
 
   if (error) {

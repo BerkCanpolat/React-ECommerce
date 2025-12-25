@@ -22,3 +22,25 @@
   /* Calvın Klevın */
   --font-kalvin: "Montserrat", sans-serif;
 }
+
+.swiper-slide {
+  transition: all 0.5s ease;
+  opacity: 0.3;
+  transform: scale(0.9);
+}
+
+.swiper-slide-active,
+.swiper-slide-next,
+.swiper-slide-prev {
+  filter: blur(0) !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+@media (max-width: 640px) {
+  .swiper-slide {
+    filter: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,6 +1,7 @@
 import Hero from "../Components/Hero";
 import HomeCategory from "../Components/HomeCategory";
 import NewArrivals from "../Components/NewArrivals";
+import Testimonials from "../Components/Testimonials";
 
 const Home = () => {
 
@@ -8,7 +9,8 @@ const Home = () => {
     <section>
       <Hero />
       <NewArrivals/>
-      <HomeCategory />
+      <HomeCategory style="md:mt-20" styleTwo="md:mt-20 mt-12 bg-[#F0F0F0]"/>
+      <Testimonials />
     </section>
   );
 };

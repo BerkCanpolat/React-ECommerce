@@ -7,3 +7,7 @@ export const fetchAllProducts = async (page: number, perPage: number) => {
 export const fetchCategories = async () => {
     return ServiceManager.products.getICategories();
 }
+
+export const fetchReviews = async () => {
+    return ServiceManager.reviews.getIReviews();
+}
