@@ -3,10 +3,10 @@ import type { ProductsResponse, Reviews } from "../Api/types/Products.types";
 import { PRODUCT_KEYS } from "../ApiQuery/Keys";
 import { fetchAllProducts, fetchCategories, fetchReviews } from "../ApiQuery/Products.query";
 
-export function useProducts(page: number, perPage: number) {
+export function useProducts(page: number, perPage: number, category?: string) {
     return useQuery<ProductsResponse>({
-        queryKey: PRODUCT_KEYS.allProduct(page, perPage),
-        queryFn: () => fetchAllProducts(page, perPage),
+        queryKey: PRODUCT_KEYS.allProduct(page, perPage, category),
+        queryFn: () => fetchAllProducts(page, perPage, category),
         staleTime: 1000 * 60 * 5,
         placeholderData: (previousData) => previousData
     });

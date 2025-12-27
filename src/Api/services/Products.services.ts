@@ -10,9 +10,9 @@ export class ProductService extends BaseService implements IProductsService {
     }
 
     
-    async getIProducts(page: number = 1, perPage: number = 4): Promise<ProductsResponse> {
+    async getIProducts(page: number = 1, perPage: number = 4, category?: string): Promise<ProductsResponse> {
         try {
-            return await ProductApi.getProducts(page, perPage);
+            return await ProductApi.getProducts(page, perPage, category);
         } catch (error) {
             this.handleError(error);
         }

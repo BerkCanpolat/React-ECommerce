@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CATEGORY_IMAGES, IMAGES } from "../Constants/images";
 
 interface HomeCategoryMapProps {
@@ -8,7 +9,13 @@ interface HomeCategoryMapProps {
 
 const HomeCategoryMap = ({ c, i, colSpan }: HomeCategoryMapProps) => {
   return (
-    <div key={i} className={`${colSpan}`}>
+    <Link to={`category/${c}`} 
+    state={{ 
+        fromPath: location.pathname,
+        fromName: location.pathname === "/" ? "Home" : location.pathname.split("/").at(-1)
+    }}
+    className={`${colSpan}`}>
+    <div key={i}>
       <div className="relative group overflow-hidden rounded-2xl cursor-pointer">
         <img
           src={CATEGORY_IMAGES[c] ?? IMAGES.MAIN_BG}
@@ -20,6 +27,7 @@ const HomeCategoryMap = ({ c, i, colSpan }: HomeCategoryMapProps) => {
         </h1>
       </div>
     </div>
+    </Link>
   );
 };
 

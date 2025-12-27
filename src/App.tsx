@@ -6,6 +6,7 @@ import OnSale from './Pages/OnSale';
 import NewArrivals from './Pages/NewArrivals';
 import Brands from './Pages/Brands';
 import type { JSX } from 'react';
+import Category from './Pages/Category';
 
 const routes: RouteObject[] = [
   {
@@ -16,6 +17,7 @@ const routes: RouteObject[] = [
       {path: "/onSale", element: <OnSale /> },
       {path: "/newArrivals", element: <NewArrivals /> },
       {path: "/brands", element: <Brands /> },
+      {path: "/category/:category", element: <Category /> },
     ]
   }
 ];

@@ -1,7 +1,7 @@
 import { ServiceManager } from "../Api/manager/serviceManager"
 
-export const fetchAllProducts = async (page: number, perPage: number) => {
-    return ServiceManager.products.getIProducts(page, perPage);
+export const fetchAllProducts = async (page: number, perPage: number, category?: string) => {
+    return ServiceManager.products.getIProducts(page, perPage, category);
 }
 
 export const fetchCategories = async () => {
