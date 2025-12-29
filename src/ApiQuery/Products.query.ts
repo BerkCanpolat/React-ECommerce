@@ -11,3 +11,7 @@ export const fetchCategories = async () => {
 export const fetchReviews = async () => {
     return ServiceManager.reviews.getIReviews();
 }
+
+export const fetchProductById = (id: string | number) => {
+    return ServiceManager.products.getIProductById(id);
+}

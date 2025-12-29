@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ProductsResponse, Reviews } from "../Api/types/Products.types";
 import { PRODUCT_KEYS } from "../ApiQuery/Keys";
-import { fetchAllProducts, fetchCategories, fetchReviews } from "../ApiQuery/Products.query";
+import { fetchAllProducts, fetchCategories, fetchProductById, fetchReviews } from "../ApiQuery/Products.query";
 
 export function useProducts(page: number, perPage: number, category?: string) {
     return useQuery<ProductsResponse>({
@@ -25,5 +25,14 @@ export function useReview() {
         queryKey: PRODUCT_KEYS.reviews(),
         queryFn: fetchReviews,
         staleTime: 1000 * 60 * 30
+    });
+}
+
+export function useProductDetail(id: string | number) {
+    return useQuery({
+        queryKey: PRODUCT_KEYS.detail(id),
+        queryFn: () => fetchProductById(id),
+        enabled: !!id,
+        staleTime: 1000 * 60 * 10
     });
 }

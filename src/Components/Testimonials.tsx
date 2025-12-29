@@ -22,7 +22,7 @@ const Testimonials = () => {
   if(error) {
     return (
       <div className="text-center py-10 text-red-500">
-        Kullanıcı yorumları yüklenirken bir hata oluştu.
+        <h1 className="font-bold text-5xl">An error occurred while loading user reviews.</h1>
       </div>
     );
   }

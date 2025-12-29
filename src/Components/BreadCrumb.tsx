@@ -1,7 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
 
-const Breadcrumb = () => {
+interface BreadcrumbProps {
+    customName?: string
+}
+
+const Breadcrumb = ({ customName }: BreadcrumbProps) => {
   const location = useLocation();
 
   const fromName = location.state?.fromName || "Home";
@@ -28,7 +32,7 @@ const Breadcrumb = () => {
             
             {isLast ? (
               <span className="capitalize text-black font-bold">
-                {decodeURIComponent(name)}
+                {customName ? customName : decodeURIComponent(name)}
               </span>
             ) : (
               <h1 

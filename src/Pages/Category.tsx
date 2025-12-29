@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useProducts } from "../Hooks/useProducts";
-import TestimonialsSkeleton from "../Components/Skeleton/TestimonialsSkeleton";
 import Breadcrumb from "../Components/BreadCrumb";
+import CategorySkeleton from "../Components/Skeleton/CategorySkeleton";
 
 
 const Category = () => {
@@ -10,14 +10,14 @@ const Category = () => {
     const { data: categories, isLoading, error } = useProducts(1,30, category);
 
     if(isLoading && !categories) {
-      return <TestimonialsSkeleton />;
+      return <CategorySkeleton />;
     }
 
     
     if(error) {
         return (
             <div className="text-center py-10 text-red-500">
-        kategorideyik babba
+                <h1>ERROR!</h1>
       </div>
     );
 }
@@ -40,7 +40,7 @@ const filteredData = categories ? categories?.data.filter(myCategory => myCatego
                     }
                 </div>
             ) : (
-                <h1>ÜRÜN BULUNAMADI</h1>
+                <h1 className="uppercase text-5xl text-center text-red-500">category not found!</h1>
             )
         }
     </section>

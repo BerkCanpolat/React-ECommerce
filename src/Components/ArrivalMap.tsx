@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Products } from "../Api/types/Products.types"
 import { FaStar, FaStarHalf } from "react-icons/fa";
 
@@ -7,7 +8,8 @@ interface ArrivalMapProps {
 
 const ArrivalMap = ({ products }: ArrivalMapProps) => {
   return (
-    <div className="">
+    <Link to={`products/${products._id}`}>
+    <div>
                   <div className="bg-[#F0EEED] w-40 h-55 md:w-73 md:h-80 rounded-3xl flex items-center justify-center cursor-pointer">
                     <img
                       src={products.image}
@@ -29,6 +31,7 @@ const ArrivalMap = ({ products }: ArrivalMapProps) => {
                     <h1 className="font-kalvin font-medium text-sm md:text-xl">${products.price}</h1>
                   </div>
                 </div>
+    </Link>
   )
 }
 

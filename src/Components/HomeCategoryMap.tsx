@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CATEGORY_IMAGES, IMAGES } from "../Constants/images";
 
 interface HomeCategoryMapProps {
@@ -8,11 +8,20 @@ interface HomeCategoryMapProps {
 }
 
 const HomeCategoryMap = ({ c, i, colSpan }: HomeCategoryMapProps) => {
+
+  const location = useLocation();
+
+  const formatPathName = (path: string) => {
+    if (path === "/") return "Home";
+    const lastPart = path.split("/").filter(Boolean).at(-1) || "Home";
+    return lastPart;
+  };
+
   return (
     <Link to={`category/${c}`} 
     state={{ 
         fromPath: location.pathname,
-        fromName: location.pathname === "/" ? "Home" : location.pathname.split("/").at(-1)
+        fromName: formatPathName(location.pathname),
     }}
     className={`${colSpan}`}>
     <div key={i}>
