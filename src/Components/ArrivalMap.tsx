@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Products } from "../Api/types/Products.types"
 import { FaStar, FaStarHalf } from "react-icons/fa";
+import React from "react";
 
 interface ArrivalMapProps {
     products: Products;
@@ -8,13 +9,15 @@ interface ArrivalMapProps {
 
 const ArrivalMap = ({ products }: ArrivalMapProps) => {
   return (
-    <Link to={`products/${products._id}`}>
+    <Link to={`/products/${products._id}`}>
     <div>
                   <div className="bg-[#F0EEED] w-40 h-55 md:w-73 md:h-80 rounded-3xl flex items-center justify-center cursor-pointer">
                     <img
                       src={products.image}
                       alt={products.title}
-                      className="w-30 h-45 md:w-50 md:h-65 object-cover rounded-lg"
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-video h-45 md:w-50 md:h-65 object-cover rounded-lg bg-[#f0f0f0]"
                     />
                   </div>
                   <div>
@@ -35,4 +38,4 @@ const ArrivalMap = ({ products }: ArrivalMapProps) => {
   )
 }
 
-export default ArrivalMap
+export default React.memo(ArrivalMap);
