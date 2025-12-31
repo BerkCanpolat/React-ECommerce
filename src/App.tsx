@@ -3,8 +3,6 @@ import { createBrowserRouter, RouterProvider, type RouteObject } from 'react-rou
 import MainLayout from './Layout/MainLayout';
 import Home from './Pages/Home';
 import OnSale from './Pages/OnSale';
-import NewArrivals from './Pages/NewArrivals';
-import Brands from './Pages/Brands';
 import type { JSX } from 'react';
 import Category from './Pages/Category';
 import ProductsDetails from './Pages/ProductsDetails';
@@ -18,8 +16,6 @@ const routes: RouteObject[] = [
     children: [
       {path: "/", element: <Home /> },
       {path: "/onSale", element: <OnSale /> },
-      {path: "/newArrivals", element: <NewArrivals /> },
-      {path: "/brands", element: <Brands /> },
       {path: "/category/:category", element: <Category /> },
       {path: "/products/:id", element: <ProductsDetails /> },
       {path: "/cart", element: <Cart /> },

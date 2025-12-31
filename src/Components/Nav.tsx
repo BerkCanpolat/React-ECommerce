@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 import { useProducts } from "../Hooks/useProducts";
 import Lottie from "lottie-react";
+import { SignedIn, SignedOut, SignInButton, useAuth, useClerk, UserButton } from "@clerk/clerk-react";
+import { toast } from "react-toastify";
 
 const Nav = () => {
     
@@ -24,6 +26,18 @@ const Nav = () => {
     const { cartItem } = useCart();
     const { data: searchData, isLoading } = useProducts(1, 30);
     const searchRef = useRef<HTMLDivElement>(null);
+    const { isSignedIn } = useAuth();
+const { openSignIn } = useClerk();
+
+const handleCartClick = (e: React.MouseEvent) => {
+    if (!isSignedIn) {
+        e.preventDefault();
+        toast.info("Please sign in to view your cart!");
+        openSignIn({
+            fallbackRedirectUrl: "/cart"
+        });
+    }
+};
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -77,11 +91,30 @@ useEffect(() => {
     className="sticky top-0 w-full z-100">
 
         <div className={`bg-black transition-all duration-500 ${infoClose ? "py-2.5 md:py-1.5 opacity-100 max-h-20" : " py-0 opacity-0 max-h-0"}`}>
-        <div className="flex items-center px-5 md:px-0 md:container md:m-auto">
-            <p className="w-full text-center text-white text-xs md:text-[16px]">Sign up and get 20% off to your first order. <span className="font-medium underline text-xs md:text-[16px] cursor-pointer">Sign Up Now</span></p>
-            <IoMdClose className="cursor-pointer hover:text-red-500 hover:bg-white hover:rounded-md text-white transition-all duration-200 rounded-md text-lg md:text-2xl" onClick={() => setInfoClose(false)}/>
-        </div>
-        </div>
+  <div className="flex items-center px-5 md:px-0 md:container md:m-auto">
+    <div className="w-full text-center text-white text-xs md:text-[16px]">
+      <SignedOut>
+        <p>
+          Sign up and get 20% off to your first order.
+          <SignInButton mode="modal">
+            <span className="font-medium underline cursor-pointer hover:text-gray-300 transition-colors">
+              Sign Up Now
+            </span>
+          </SignInButton>
+        </p>
+      </SignedOut>
+      
+      <SignedIn>
+        <p>Welcome back! Enjoy your special discounts. 🎉</p>
+      </SignedIn>
+    </div>
+    
+    <IoMdClose 
+      className="cursor-pointer hover:text-red-500 hover:bg-white hover:rounded-md text-white transition-all duration-200 rounded-md text-lg md:text-2xl" 
+      onClick={() => setInfoClose(false)}
+    />
+  </div>
+</div>
 
 
         <div className="bg-white border-b border-gray-200/70">
@@ -110,17 +143,17 @@ useEffect(() => {
 <div className="flex items-center gap-3 md:gap-5">
     
     <div className="relative flex items-center md:bg-[#F0F0F0] md:rounded-full md:py-1.5 md:px-3.5 md:gap-1 md:border md:border-gray-300" onClick={() => setSearchOpen(true)} ref={searchRef}>
-        <CiSearch size={25} className="cursor-pointer md:cursor-default" />
+        <CiSearch size={25} className="hidden md:block cursor-pointer md:cursor-default" />
         <input 
             type="text" 
-            className="hidden md:block w-150 bg-transparent border-none outline-none text-lg p-1 text-gray-700 placeholder:text-gray-500" 
+            className="w-30 border rounded-full border-gray-400 md:w-150 bg-transparent md:border-none outline-none text-[10px] md:text-lg p-1 text-gray-700 placeholder:text-gray-500" 
             placeholder="Search for products..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
         />
         {
             searchOpen && (
-        <div className="absolute top-15 left-0 w-full max-h-100 overflow-y-auto bg-white rounded border border-gray-300 shadow-md px-4 pt-4 py-4 will-change-scroll">
+        <div className="absolute top-10 -left-41 w-91.5 md:top-15 md:left-0 md:w-full max-h-100 overflow-y-auto bg-white rounded border border-gray-300 shadow-md px-4 pt-4 py-4 will-change-scroll">
             {
                 isLoading ? (
                     <div className="flex flex-col items-center justify-center p-5 gap-2">
@@ -153,7 +186,7 @@ useEffect(() => {
                     ) : (
                         <div className="flex flex-col items-center justify-center">
                         <Lottie animationData={IMAGES.SEARCH_ICON} className="w-75 md:w-100"/>
-                        <h1 className="text-gray-800 font-bold">Try searching for, <span className="font-kalvin font-bold text-xl">Long Sleeve Jacket</span></h1>
+                        <h1 className="text-gray-800 font-bold text-sm md:text-md">Try searching for, <span className="font-kalvin font-bold text-lg md:text-xl">Long Sleeve Jacket</span></h1>
                     </div>
                     )
                 
@@ -165,7 +198,7 @@ useEffect(() => {
     </div>
 
     <div className="flex items-center gap-3 md:gap-5">
-        <Link to={"/cart"} className="relative">
+        <Link to={"/cart"} className="relative" onClick={handleCartClick}>
         <MdOutlineShoppingCart size={25} className="cursor-pointer"/>
         {
             cartItem.length > 0 && (
@@ -173,7 +206,17 @@ useEffect(() => {
             )
         }
         </Link>
-        <CgProfile size={25} className="cursor-pointer"/>
+    <SignedOut>
+        <SignInButton mode="modal">
+            <div className="cursor-pointer flex items-center">
+                <CgProfile size={25} />
+            </div>
+        </SignInButton>
+    </SignedOut>
+
+    <SignedIn>
+        <UserButton />
+    </SignedIn>
     </div>
 </div>
         </div>

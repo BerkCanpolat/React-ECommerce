@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { toast } from "react-toastify";
 import type { Products } from "../Api/types/Products.types";
 
@@ -22,7 +22,14 @@ interface CartProviderProps {
 }
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const [cartItem, setCardItem] = useState<CartItem[]>([]);
+  const [cartItem, setCardItem] = useState<CartItem[]>(() => {
+    const savedCart = localStorage.getItem("shopping-cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("shopping-cart", JSON.stringify(cartItem));
+  }, [cartItem]);
 
   const addToCard = (product: Products, amount: number = 1) => {
     const itemInCart = cartItem.find((item) => item._id === product._id);

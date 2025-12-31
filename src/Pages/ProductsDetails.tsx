@@ -7,15 +7,32 @@ import ProductTabs from "../Components/ProducTabs";
 import { useEffect, useState } from "react";
 import ProductDetailsSkeleton from "../Components/Skeleton/ProductDetailSkeleton";
 import { useCart } from "../Context/CartContext";
+import { useAuth, useClerk } from "@clerk/clerk-react";
+import { toast } from "react-toastify";
 
 
 const ProductsDetails = () => {
     const { id } = useParams<{id: string}>();
 
     const { data: product, isLoading, error} = useProductDetail(id || 1);
-    const { addToCard, cartItem } = useCart();
+    const { addToCard } = useCart();
 
-    console.log(cartItem);
+    const { isSignedIn } = useAuth();
+    const { openSignIn } = useClerk();
+
+    const handleAddToCart = () => {
+        if (!isSignedIn) {
+            toast.info("Please sign in to add products to your cart!");
+            openSignIn({
+                fallbackRedirectUrl: window.location.href 
+            });
+            return;
+        }
+
+        if (product) {
+            addToCard(product, count);
+        }
+    };
 
     const [selectedImage, setSelectedImage] = useState<string>("");
     const [count, setCount] = useState<number>(1);
@@ -98,7 +115,7 @@ const ProductsDetails = () => {
                         <button className="text-2xl md:text-3xl cursor-pointer" onClick={handleIncrement}>+</button>
                     </div>
                     <div>
-                        <button className="px-17 py-2.5 text-md md:px-34 md:py-3 bg-black text-white rounded-full md:text-2xl cursor-pointer hover:bg-gray-200 hover:text-black transition-all duration-300" onClick={() => addToCard(product, count)}>Add to Cart</button>
+                        <button className="px-17 py-2.5 text-md md:px-34 md:py-3 bg-black text-white rounded-full md:text-2xl cursor-pointer hover:bg-gray-200 hover:text-black transition-all duration-300" onClick={handleAddToCart}>Add to Cart</button>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import Lottie from "lottie-react";
 import { IMAGES } from "../Constants/images";
 import { Link } from "react-router-dom";
+import { RedirectToSignIn, useAuth } from "@clerk/clerk-react";
 
 
 
@@ -24,6 +25,12 @@ const Cart = () => {
         total: finalTotal
     };
 }, [cartItem]);
+
+const { isSignedIn, isLoaded } = useAuth();
+    if (!isLoaded) return null; 
+    if (!isSignedIn) {
+        return <RedirectToSignIn />;
+    }
 
 
   return (
