@@ -215,3 +215,13 @@ amacıyla geliştirilmiştir.
 
 **Berk Canpolat**  
 Frontend Developer
+
+
+
+
+
+https://github.com/user-attachments/assets/7fcdef4b-ac0a-49c6-bf24-118d215c0199
+
+
+
+
