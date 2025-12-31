@@ -2,8 +2,6 @@
 
 ----- ENG -------
 
-# 🛍️ Modern E-Commerce Frontend Application
-
 This project was developed to apply modern frontend development practices within a real-world e-commerce scenario.  
 The main goal was not only to build a user interface, but also to focus on **scalable architecture**, **user experience**, and **production-like application flows**.
 
