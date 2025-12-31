@@ -8,6 +8,8 @@ import Brands from './Pages/Brands';
 import type { JSX } from 'react';
 import Category from './Pages/Category';
 import ProductsDetails from './Pages/ProductsDetails';
+import Cart from './Pages/Cart';
+import Success from './Pages/Success';
 
 const routes: RouteObject[] = [
   {
@@ -20,6 +22,8 @@ const routes: RouteObject[] = [
       {path: "/brands", element: <Brands /> },
       {path: "/category/:category", element: <Category /> },
       {path: "/products/:id", element: <ProductsDetails /> },
+      {path: "/cart", element: <Cart /> },
+      {path: "/success", element: <Success /> },
     ]
   }
 ];

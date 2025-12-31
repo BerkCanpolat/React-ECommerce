@@ -18,13 +18,13 @@ const HomeCategory = ({ style, styleTwo }: HomeCategoryProps) => {
   if(error) {
     return (
       <div className="text-center py-10 text-red-500">
-        Kategoriler yüklenirken bir hata oluştu.
+        An error occurred while loading categories.
       </div>
     );
   }
 
   if (!isLoading && (!category || category.length === 0)) {
-    return <div className="text-center py-20 italic text-gray-400">Gösterilecek kategori bulunamadı.</div>;
+    return <div className="text-center py-20 italic text-gray-400">No category found to display.</div>;
   }
 
 

@@ -6,14 +6,24 @@ import { FaStar } from "react-icons/fa";
 import ProductTabs from "../Components/ProducTabs";
 import { useEffect, useState } from "react";
 import ProductDetailsSkeleton from "../Components/Skeleton/ProductDetailSkeleton";
+import { useCart } from "../Context/CartContext";
 
 
 const ProductsDetails = () => {
     const { id } = useParams<{id: string}>();
 
     const { data: product, isLoading, error} = useProductDetail(id || 1);
+    const { addToCard, cartItem } = useCart();
+
+    console.log(cartItem);
 
     const [selectedImage, setSelectedImage] = useState<string>("");
+    const [count, setCount] = useState<number>(1);
+
+    const handleIncrement = () => setCount(prev => prev + 1);
+    const handleDecrement = () => {
+        if (count > 1) setCount(prev => prev - 1);
+    };
 
     useEffect(() => {
         if (product?.image) {
@@ -83,12 +93,12 @@ const ProductsDetails = () => {
                 <div className="w-full bg-gray-300 h-px rounded-full container mx-auto"/>
                 <div className="flex items-center gap-5 md:gap-10 mt-7.5">
                     <div className="flex items-center gap-6.5 md:gap-10 bg-gray-200 rounded-full px-4 py-1.5 md:px-6 md:py-3">
-                        <button className="text-2xl md:text-3xl cursor-pointer">-</button>
-                        <h1 className="font-kalvin font-medium text-md md:text-xl">1</h1>
-                        <button className="text-2xl md:text-3xl cursor-pointer">+</button>
+                        <button className="text-2xl md:text-3xl cursor-pointer" onClick={handleDecrement}>-</button>
+                        <h1 className="font-kalvin font-medium text-md md:text-xl">{count}</h1>
+                        <button className="text-2xl md:text-3xl cursor-pointer" onClick={handleIncrement}>+</button>
                     </div>
                     <div>
-                        <button className="px-17 py-2.5 text-md md:px-34 md:py-3 bg-black text-white rounded-full md:text-2xl cursor-pointer hover:bg-gray-200 hover:text-black transition-all duration-300">Add to Cart</button>
+                        <button className="px-17 py-2.5 text-md md:px-34 md:py-3 bg-black text-white rounded-full md:text-2xl cursor-pointer hover:bg-gray-200 hover:text-black transition-all duration-300" onClick={() => addToCard(product, count)}>Add to Cart</button>
                     </div>
                 </div>
             </div>

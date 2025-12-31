@@ -7,15 +7,10 @@ import { TfiEmail } from "react-icons/tfi";
 import { SiVisa } from "react-icons/si";
 import { BiLogoMastercard } from "react-icons/bi";
 
-
-
-
-
-
 const Footer = () => {
   return (
     <footer className="relative bg-[#F0F0F0] pt-35 pb-10 mt-50">
-      <div className="absolute -top-30 md:-top-22 left-1/2 -translate-x-1/2 bg-black w-full container mx-auto rounded-2xl flex items-center justify-center md:justify-between flex-wrap px-4 md:px-14 h-80 md:h-45">
+      <div className="absolute -top-30 md:-top-22 left-1/2 -translate-x-1/2 bg-black md:w-full container mx-auto rounded-2xl flex items-center justify-center md:justify-between flex-wrap px-4 md:px-14 h-80 md:h-45 w-[calc(100%-20px)]">
       <h1 className="text-white uppercase text-3xl max-w-75 md:text-5xl font-extrabold font-kalvin md:max-w-175">stay upto date about our latest offers</h1>
       <div className="flex flex-col gap-3.5">
         <div className="flex items-center gap-2.5 bg-white pl-5 py-3.5 rounded-full">

@@ -9,6 +9,8 @@ import vectorOne from '../assets/vector.png';
 import vectorTwo from '../assets/vector2.png';
 
 import loading from '../assets/loading.json';
+import emptycart from '../assets/ecommerce.json';
+import success from '../assets/success.json';
 
 import error from '../assets/error.svg';
 
@@ -27,7 +29,9 @@ export const IMAGES = {
     ERROR: error,
     CHILDREN: children,
     CASUAL: casual,
-    WOMEN: women
+    WOMEN: women,
+    EMPTY_CART: emptycart,
+    SUCCESS: success
 } as const;
 
 export const CATEGORY_IMAGES: Record<string, string> = {

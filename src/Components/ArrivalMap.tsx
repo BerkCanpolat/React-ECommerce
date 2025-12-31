@@ -31,7 +31,11 @@ const ArrivalMap = ({ products }: ArrivalMapProps) => {
                         </div>
                         <p className="font-extralight text-xs md:text-sm font-kalvin">{products.rating}</p>
                     </div>
+                    <div className="flex items-center gap-2.5">
                     <h1 className="font-kalvin font-medium text-sm md:text-xl">${products.price}</h1>
+                    <h1 className="font-kalvin font-medium text-sm md:text-xl text-gray-400 line-through">${products.oldPrice}</h1>
+                    <h1 className="text-xs font-medium px-1.5 py-1 md:text-sm bg-pink-100 text-red-500 md:font-bold rounded-full md:px-2 md:py-1.5">-{products.discountedPrice}%</h1>
+                    </div>
                   </div>
                 </div>
     </Link>

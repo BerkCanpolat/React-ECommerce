@@ -9,12 +9,14 @@ import NavMenu from "./NavMenu";
 import { motion } from "framer-motion";
 import { headerVariants } from "../Constants/Animation";
 import { Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 const Nav = () => {
     
     const [infoClose, setInfoClose] = useState<boolean>(true);
     const [openDropDownId, setOpenDropDownId] = useState<number | null>(null);
     const [openMenu, setOpenMenu] = useState<boolean>(false);
+    const { cartItem } = useCart();
 
     useEffect(() => {
         if(openMenu) {
@@ -74,7 +76,14 @@ const Nav = () => {
     </div>
 
     <div className="flex items-center gap-3 md:gap-5">
+        <Link to={"/cart"} className="relative">
         <MdOutlineShoppingCart size={25} className="cursor-pointer"/>
+        {
+            cartItem.length > 0 && (
+                <h1 className="text-white bg-red-500 px-1.5 text-xs rounded-full absolute -top-2.5 -right-1.5">{cartItem.length}</h1>
+            )
+        }
+        </Link>
         <CgProfile size={25} className="cursor-pointer"/>
     </div>
 </div>
