@@ -1,73 +1,219 @@
-# React + TypeScript + Vite
+# 🛍️ Modern E-Commerce Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+----- ENG -------
 
-Currently, two official plugins are available:
+# 🛍️ Modern E-Commerce Frontend Application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was developed to apply modern frontend development practices within a real-world e-commerce scenario.  
+The main goal was not only to build a user interface, but also to focus on **scalable architecture**, **user experience**, and **production-like application flows**.
 
-## React Compiler
+The project was built entirely for **self-improvement and portfolio purposes**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Project Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application includes essential e-commerce functionalities such as product listing, category-based navigation, frontend filtering, pagination, authentication, and cart management.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Products are dynamically rendered, filtered based on user interactions, and paginated efficiently.  
+Authentication is handled via Clerk, and protected actions (such as adding items to the cart) require user authentication.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔍 Key Features
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Client-side filtering**
+  - Category-based filtering (Women / Men / Kids)
+  - Price range filtering
+  - Ability to clear active filters
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Authentication & authorization**
+  - User authentication with Clerk
+  - Prevents unauthenticated users from adding items to the cart
+  - Real-time user feedback with toast notifications
+
+- **Cart management**
+  - Add / remove products
+  - Quantity control per item
+  - Real-time total price calculation
+
+- **Animations & user experience**
+  - Page and component animations using Framer Motion
+  - Sliders implemented with Swiper
+  - Loading and visual animations powered by Lottie
+
+- **Fully responsive design**
+  - Mobile-first approach
+  - Mobile screen performance experience
+
+---
+
+## 🧱 Architecture & Technical Approach
+
+- **Service-based architecture**
+  - API logic separated into service layers
+  - Clean separation between UI and data-fetching logic
+
+- **State & server data management**
+  - Server state handled with React Query
+  - Built-in caching and background refetching
+  - Proper loading and error state handling
+
+- **Component-driven development**
+  - Reusable and maintainable UI components
+  - Clear separation of concerns
+
+- **Type safety**
+  - Strongly typed application using **TypeScript**
+  - Improved maintainability and developer experience
+
+---
+
+## 🛠️ Tech Stack
+
+- React
+- Typescript
+- Tailwind CSS
+- @tanstack/react-query
+- Clerk (Authentication)
+- Swiper
+- Framer Motion
+- React Toastify
+- Lottie React
+- React Icons
+- React Router DOM
+
+---
+
+## 🎯 Project Purpose
+
+This project was created to:
+- Apply modern React and TypeScript practices in a real-world scenario
+- Gain hands-on experience with frontend architecture
+- Deepen understanding of pagination, filtering, and authentication flows
+- Build a production-quality portfolio project suitable for real evaluation
+
+> This project is non-commercial and intended solely for learning and portfolio use.
+
+---
+
+## DEMO/LİVE ---> https://berk-shopco.netlify.app
+## FİGMA ----> https://www.figma.com/community/file/1273571982885059508
+
+## 👤 Developer
+
+**Berk Canpolat**  
+Frontend Developer
+
+
+
+
+
+
+
+
+------ TR ------
+Bu proje, modern frontend geliştirme pratiklerini gerçek bir e-ticaret senaryosu üzerinde uygulamak amacıyla geliştirilmiştir.  
+Amaç; yalnızca arayüz üretmek değil, **ölçeklenebilir yapı**, **kullanıcı deneyimi** ve **gerçek dünya akışlarını** simüle edebilen bir uygulama ortaya koymaktır.
+
+Proje tamamen **kendimi geliştirme ve portföy odaklı** hazırlanmıştır.
+
+---
+
+## ✨ Proje Özeti
+
+Uygulama; ürün listeleme, kategori bazlı gezinme, frontend filtreleme, pagination, authentication ve sepet yönetimi gibi bir e-ticaret platformunda beklenen temel fonksiyonları içermektedir.
+
+Ürünler dinamik olarak listelenir, kullanıcı etkileşimlerine göre filtrelenir ve sayfalanır.  
+Authentication işlemleri Clerk üzerinden sağlanır ve yetkilendirme gerektiren aksiyonlar (sepete ekleme gibi) giriş kontrolü ile korunur.
+
+---
+
+## 🔍 Öne Çıkan Özellikler
+
+
+- **Frontend tarafında filtreleme**
+  - Kategori bazlı filtreleme (Women / Men / Kids)
+  - Fiyat aralığına göre ürün süzme
+  - Aktif filtre temizleme
+
+- **Authentication & yetkilendirme**
+  - Clerk ile kullanıcı giriş / çıkış işlemleri
+  - Giriş yapılmadan sepete ürün eklenememesi
+  - Kullanıcıya anlık uyarılar (toast)
+
+- **Sepet yönetimi**
+  - Ürün ekleme / çıkarma
+  - Ürün adedi kontrolü
+  - Toplam fiyatın anlık hesaplanması
+
+- **Animasyon & kullanıcı deneyimi**
+  - Framer Motion ile geçiş animasyonları
+  - Swiper ile slider yapıları
+  - Lottie ile loading ve görsel animasyonlar
+
+- **Responsive tasarım**
+  - Mobile-first yaklaşım
+  - Mobile ekran boyutunda tutarlı deneyim
+
+---
+
+## 🧱 Mimari & Teknik Yaklaşım
+
+- **Service-based architecture**
+  - API çağrıları servis katmanında ayrıldı
+  - UI ve veri katmanı birbirinden izole edildi
+
+- **React Query**
+  - Server-state yönetimi
+  - Cache mekanizması
+  - Loading ve error state kontrolü
+
+- **Component-driven yapı**
+  - Küçük, okunabilir ve tekrar kullanılabilir bileşenler
+  - UI ve business logic ayrımı
+
+- **Tür güvenliği**
+  - **TypeScript** kullanan güçlü tipli uygulama
+  - Geliştirilmiş bakım kolaylığı ve geliştirici deneyimi
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+- React
+- Typescript
+- Tailwind CSS
+- @tanstack/react-query
+- Clerk (Authentication)
+- Swiper
+- Framer Motion
+- React Toastify
+- Lottie React
+- React Icons
+- React Router DOM
+
+---
+
+## 🎯 Proje Amacı
+
+Bu proje:
+- Modern React ekosistemini gerçek bir senaryoda uygulamak
+- Frontend mimarisi kurma pratiği kazanmak
+- Pagination, filtreleme ve authentication gibi konuları derinlemesine deneyimlemek
+- CV ve GitHub portföyünde sergilenebilecek **üretim kalitesine yakın** bir uygulama oluşturmak
+
+amacıyla geliştirilmiştir.
+
+> Proje ticari bir amaç taşımamaktadır.
+
+---
+
+## DEMO/LİVE ---> https://berk-shopco.netlify.app
+## FİGMA ----> https://www.figma.com/community/file/1273571982885059508
+
+## 👤 Geliştirici
+
+**Berk Canpolat**  
+Frontend Developer
