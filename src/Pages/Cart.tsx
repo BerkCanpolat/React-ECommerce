@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 
 const Cart = () => {
-    const { cartItem, updateQuantity, deleteItem } = useCart();
+    const { cartItem, updateQuantity, deleteItem, clearCart } = useCart();
 
     const { subtotal, deliveryFee, total } = useMemo(() => {
     const sub = cartItem.reduce((acc, item) => acc + (item.price * item.quantity), 0);
@@ -91,7 +91,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <Link to={"/success"}>
-                <button className="flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-all duration-300 gap-2.5 w-full py-3 rounded-full bg-black text-white mt-4">Go to Checkout <FaArrowRight /></button>
+                <button className="flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-all duration-300 gap-2.5 w-full py-3 rounded-full bg-black text-white mt-4" onClick={clearCart}>Go to Checkout <FaArrowRight /></button>
                 </Link>
             </div>
         </div>

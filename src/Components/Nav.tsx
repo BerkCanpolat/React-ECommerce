@@ -4,19 +4,38 @@ import { MdOutlineShoppingCart, MdOutlineClear } from "react-icons/md";
 import { CgProfile,CgMenuLeft } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io"
 import { CiSearch } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import NavMenu from "./NavMenu";
 import { motion } from "framer-motion";
 import { headerVariants } from "../Constants/Animation";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
+import { useProducts } from "../Hooks/useProducts";
+import Lottie from "lottie-react";
 
 const Nav = () => {
     
     const [infoClose, setInfoClose] = useState<boolean>(true);
     const [openDropDownId, setOpenDropDownId] = useState<number | null>(null);
     const [openMenu, setOpenMenu] = useState<boolean>(false);
+    const [searchOpen, setSearchOpen] = useState<boolean>(false);
+    const [searchInput, setSearchInput] = useState<string>("");
+    const [debouncedInput, setDebouncedInput] = useState<string>("");
     const { cartItem } = useCart();
+    const { data: searchData, isLoading } = useProducts(1, 30);
+    const searchRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if(searchRef.current && !searchRef.current.contains(event.target as Node)) {
+                setSearchOpen(false);
+                setSearchInput("");
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [])
 
     useEffect(() => {
         if(openMenu) {
@@ -24,7 +43,31 @@ const Nav = () => {
         } else {
             document.body.style.overflow = "auto"
         }
-    }, [openMenu])
+    }, [openMenu]);
+
+useEffect(() => {
+    const handler = setTimeout(() => {
+        setDebouncedInput(searchInput);
+    }, 300);
+
+    return () => clearTimeout(handler);
+}, [searchInput]);
+
+const filteredProducts = useMemo(() => {
+    if (!debouncedInput.trim() || !searchData) return [];
+
+    return searchData.data.filter((product) =>
+        product.title.toLowerCase().includes(debouncedInput.toLowerCase())
+    );
+}, [debouncedInput, searchData]);
+
+useEffect(() => {
+    if (searchInput.trim() === "") {
+        setSearchOpen(false);
+    } else {
+        setSearchOpen(true);
+    }
+}, [searchInput]);
 
   return (
     <motion.header
@@ -66,13 +109,59 @@ const Nav = () => {
 
 <div className="flex items-center gap-3 md:gap-5">
     
-    <div className="flex items-center md:bg-[#F0F0F0] md:rounded-full md:py-1.5 md:px-3.5 md:gap-1 md:border md:border-gray-300">
+    <div className="relative flex items-center md:bg-[#F0F0F0] md:rounded-full md:py-1.5 md:px-3.5 md:gap-1 md:border md:border-gray-300" onClick={() => setSearchOpen(true)} ref={searchRef}>
         <CiSearch size={25} className="cursor-pointer md:cursor-default" />
         <input 
             type="text" 
             className="hidden md:block w-150 bg-transparent border-none outline-none text-lg p-1 text-gray-700 placeholder:text-gray-500" 
             placeholder="Search for products..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
         />
+        {
+            searchOpen && (
+        <div className="absolute top-15 left-0 w-full max-h-100 overflow-y-auto bg-white rounded border border-gray-300 shadow-md px-4 pt-4 py-4 will-change-scroll">
+            {
+                isLoading ? (
+                    <div className="flex flex-col items-center justify-center p-5 gap-2">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black"></div>
+                <p className="text-gray-500 text-sm font-kalvin">Searching products...</p>
+            </div>
+                ) : (
+                    
+                        filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                            <Link 
+                                key={product._id} 
+                                to={`/products/${product._id}`}
+                                onClick={() => {
+                                    setSearchInput("");
+                                    setSearchOpen(false);
+                                }}
+                                className="flex items-center gap-4 p-3 hover:bg-gray-200 hover:rounded transition-colors border-b border-gray-300 last:border-none"
+                            >
+                                <img src={`${product.image}?auto=compress&cs=tinysrgb&w=200`} alt={product.title} 
+                                loading="lazy" 
+                                decoding="async"
+                                className="w-12 h-12 object-cover rounded" />
+                                <div className="flex flex-col">
+                                    <h2 className="text-sm font-bold text-black truncate w-48 md:w-80">{product.title}</h2>
+                                    <p className="text-xs text-gray-500">${product.price}</p>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="flex flex-col items-center justify-center">
+                        <Lottie animationData={IMAGES.SEARCH_ICON} className="w-75 md:w-100"/>
+                        <h1 className="text-gray-800 font-bold">Try searching for, <span className="font-kalvin font-bold text-xl">Long Sleeve Jacket</span></h1>
+                    </div>
+                    )
+                
+                )
+            }
+        </div>
+            )
+        }
     </div>
 
     <div className="flex items-center gap-3 md:gap-5">

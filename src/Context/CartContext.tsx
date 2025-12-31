@@ -12,6 +12,7 @@ interface CartContextType {
   updateQuantity: (productId: number | string, action: "increase" | "decrease") => void;
   deleteItem: (productId: number | string) => void;
   setCardItem: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  clearCart: () => void;
 }
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -61,8 +62,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     toast.error("Item removed from cart");
   };
 
+  const clearCart = () => {
+  setCardItem([]);
+};
+
   return (
-    <CartContext.Provider value={{ cartItem, setCardItem, addToCard, updateQuantity, deleteItem }}>
+    <CartContext.Provider value={{ cartItem, setCardItem, addToCard, updateQuantity, deleteItem, clearCart }}>
       {children}
     </CartContext.Provider>
   );

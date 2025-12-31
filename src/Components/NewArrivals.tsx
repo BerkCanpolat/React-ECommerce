@@ -5,6 +5,7 @@ import { IMAGES } from "../Constants/images";
 import Lottie from "lottie-react";
 import ArrivalMap from "./ArrivalMap";
 import NewArrivalsSkeleton from "./Skeleton/NewArrivalSkeleton";
+import { Link } from "react-router-dom";
 
 
 const NewArrivals = () => {
@@ -69,11 +70,13 @@ const NewArrivals = () => {
         ) : (
             <div>
                 <p className="mt-5 mb-8 font-kalvin font-medium">No Other Products to Display!</p>
+                <Link to={"/onsale"}>
                 <button
             className="bg-white text-black border border-gray-300 px-18 py-3 rounded-full font-kalvin font-medium transition-all duration-300 cursor-pointer hover:bg-black hover:text-white"
           >
              All Views
           </button>
+                </Link>
             </div>
         )}
       </div>

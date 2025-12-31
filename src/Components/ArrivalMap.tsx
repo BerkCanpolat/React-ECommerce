@@ -13,7 +13,7 @@ const ArrivalMap = ({ products }: ArrivalMapProps) => {
     <div>
                   <div className="bg-[#F0EEED] w-40 h-55 md:w-73 md:h-80 rounded-3xl flex items-center justify-center cursor-pointer">
                     <img
-                      src={products.image}
+                      src={`${products.image}?auto=compress&cs=tinysrgb&w=500`}
                       alt={products.title}
                       loading="lazy"
                       decoding="async"

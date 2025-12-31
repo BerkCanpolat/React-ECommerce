@@ -11,6 +11,7 @@ import vectorTwo from '../assets/vector2.png';
 import loading from '../assets/loading.json';
 import emptycart from '../assets/ecommerce.json';
 import success from '../assets/success.json';
+import searchIcon from '../assets/Searching.json';
 
 import error from '../assets/error.svg';
 
@@ -31,7 +32,8 @@ export const IMAGES = {
     CASUAL: casual,
     WOMEN: women,
     EMPTY_CART: emptycart,
-    SUCCESS: success
+    SUCCESS: success,
+    SEARCH_ICON: searchIcon
 } as const;
 
 export const CATEGORY_IMAGES: Record<string, string> = {

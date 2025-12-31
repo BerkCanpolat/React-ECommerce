@@ -2,6 +2,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import type { NavLink as MyNavLink } from "../Constants/Navigation";
 import HomeCategory from "./HomeCategory";
+import { memo } from "react";
 
 interface NavMenuProps {
   link: MyNavLink;
@@ -52,4 +53,4 @@ const NavMenu = ({ link, setOpenDropDownId, openDropDownId }: NavMenuProps) => {
   );
 };
 
-export default NavMenu;
+export default memo(NavMenu);
